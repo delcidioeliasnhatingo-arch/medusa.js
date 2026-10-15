@@ -1,6 +1,7 @@
 name: Import Medusa upstream
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
