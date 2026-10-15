@@ -1,0 +1,24 @@
+name: Import Medusa upstream
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out destination repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Fetch the complete Medusa source history
+        run: git fetch https://github.com/medusajs/medusa.git develop
+
+      - name: Push Medusa develop to this repository's main branch
+        run: git push origin FETCH_HEAD:refs/heads/main --force
